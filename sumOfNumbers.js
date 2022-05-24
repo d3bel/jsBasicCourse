@@ -1,11 +1,8 @@
 function sumOfNumbers(input){
-    let num = input[0];
     let sum = 0;
-
-    for (let i = 0; i < num.length; i++){
-        sum += Number(num[i]);
+    for (let i = 1; i < input.length; i++) {
+        sum += Number(input[i]);
     }
-    console.log(`The sum of the digits is:${sum}`);
+    console.log(sum)
 }
-sumOfNumbers(["564891"])
- 
+sumOfNumbers(["3", "-10", "-20", "-30"])
