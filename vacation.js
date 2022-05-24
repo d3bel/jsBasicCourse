@@ -1,56 +1,74 @@
 function vacation(input) {
-  let index = 0;
-  const moneyNeededForVacation = Number(input[index++]); // •	Пари нужни за екскурзията - реално число в интервала [1.00.. .25000.00]
-  let presentMoney = Number(input[index++]); // •	Налични пари - реално число в интервала [0.00... 25000.00]
-  let daysCount = 0;
-  let spendCount = 0;
-  let currentAction = "";
-  let currentMoney = presentMoney
+  const budget = Number(input[0]);
+  const season = input[1];
 
-    while(moneyNeededForVacation > currentMoney){
-      let actionType = input[index++];
-      currentAction = actionType;
-      currentValue = Number(input[index++]);
-      daysCount++
-        if(currentAction === "spend"){
-          currentMoney -= currentValue;
-          spendCount++;
-          if(currentMoney <= 0){
-            currentMoney = 0;
-          }
-          if(spendCount >= 5){
-            console.log("You can't save the money.");
-            console.log(`${daysCount}`);
-            break;
-          }
-        } else{
-          currentMoney += currentValue;
-          spendCount = 0;
-        }          
-    } if(currentMoney >= moneyNeededForVacation){
-      console.log(`You saved the money for ${daysCount} days.`)
-    }
+  let location = "";
+  let place = "";
+  let price = 0;
+
+  switch (season) {
+    case "Summer":
+      if (budget <= 1000) {
+        place = "Camp";
+        location = "Alaska";
+        price = budget * 0.65;
+      } else if (budget > 1000 && budget <= 3000) {
+        place = "Hut";
+        location = "Alaska";
+        price = budget * 0.8;
+      } else if (budget > 3000) {
+        place = "Hotel";
+        location = "Alaska";
+        price = budget * 0.9;
+      }
+      break;
+    case "Winter":
+      if (budget <= 1000) {
+        place = "Camp";
+        location = "Morocco";
+        price = budget * 0.45;
+      } else if (budget > 1000 && budget <= 3000) {
+        place = "Hut";
+        location = "Morocco";
+        price = budget * 0.6;
+      } else if (budget > 3000) {
+        place = "Hotel";
+        location = "Morocco";
+        price = budget * 0.9;
+      }
+      break;
+  }
+  console.log(`${location} - ${place} - ${price.toFixed(2)}`);
 }
-vacation(["2000",
-"1000",
-"spend",
-"1200",
-"save",
-"2000"])
+vacation(["799.50", "Winter"]);
 
+// Напишете програма, която спрямо даден бюджет и сезон да пресмята цената, локацията и мястото на настаняване за ваканция.
+//  Сезоните са лято и зима – "Summer" и "Winter". Локациите са – "Alaska" и "Morocco". Възможните места за настаняване – "Hotel", "Hut" или "Camp".
 
+// •	При бюджет по-малък или равен от 1000лв.:
+// o	Настаняване в "Camp"
+// o	Според сезона локацията ще е една от следните и ще струва определен процент от бюджета:
+// 	Лято – Аляска – 65% от бюджета
+// 	Зима – Мароко – 45% от бюджета
 
-// Джеси е решила да събира пари за екскурзия и иска от вас да ѝ помогнете да разбере
-//  дали ще успее да събере необходимата сума. Тя спестява или харчи част от парите си всеки ден.
-// Ако иска да похарчи повече от наличните си пари, то тя ще похарчи всичко, което има и ще ѝ останат 0 лева.
+// •	При бюджет по-голям от 1000лв. и по-малък или равен от 3000лв.:
+// o	Настаняване в "Hut"
+// o	Според сезона локацията ще е една от следните и ще струва определен процент от бюджета:
+// 	Лято – Аляска – 80% от бюджета
+// 	Зима – Мароко – 60% от бюджета
+
+// •	При бюджет по-голям от 3000лв.:
+// o	Настаняване в "Hotel"
+// o	Според сезона локацията ще е една от следните и ще струва 90% от бюджета:
+// 	Лято – Аляска
+// 	Зима – Мароко
+
 // Вход
-// След това многократно се четат по два реда:
-// •	Вид действие – текст с възможности "spend" и "save".
-// •	Сумата, която ще спести/похарчи - реално число в интервала [0.01… 25000.00]
+// Входът се чете от конзолата и се състои от два реда:
+// •	Първи ред – Бюджет – реално число в интервала [10.00...10000.00]
+// •	Втори ред –  Сезон – текст "Summer" или "Winter"
+
 // Изход
-// Функцията трябва да приключи при следните случаи:
-// •	Ако 5 последователни дни Джеси само харчи, на конзолата да се изпише:
-// o	"You can't save the money."
-// o	"{Общ брой изминали дни}"
-// •	Ако Джеси събере парите за почивката на конзолата се изписва:
-// o	"You saved the money for {общ брой изминали дни} days."
+// На конзолата трябва да се отпечатат един ред.
+// "{локацията} – {мястото за настаняване} – {цената}"
+// Цената трябва да е форматирана до вторият знак след десетичната запетая.

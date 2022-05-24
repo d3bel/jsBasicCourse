@@ -1,8 +1,8 @@
-function clock(input){
-    for (let h = 0; h < 24; h++){
-        for( let m = 0; m < 60; m++){
-            console.log(`${h}:${m}`)
-        }
+function clock(){
+    for (let i = 0; i <= 23; i++) {
+        for (let j = 0; j <= 59; j++){
+            console.log(`${i} : ${j}`);
+        }        
     }
 }
 clock()
